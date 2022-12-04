@@ -2,9 +2,10 @@ package com.joel.problemsolving.round1.problem1;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-class Problem1Test {
+class Problem1BookTest {
     @Test
     void 순환고리의_첫번째_노드를_리턴한다() {
         Node root = new Node(null, 0);
@@ -19,8 +20,8 @@ class Problem1Test {
         node4.setNext(node2);
 
 
-        Problem1 sut = new Problem1();
-        Node result = sut.findFirstInCircularLinkedList(root);
+        Problem1Book sut = new Problem1Book();
+        Node result = sut.findBeginning(root);
 
 
         assertEquals(node2, result);
@@ -40,8 +41,8 @@ class Problem1Test {
         node4.setNext(root);
 
 
-        Problem1 sut = new Problem1();
-        Node result = sut.findFirstInCircularLinkedList(root);
+        Problem1Book sut = new Problem1Book();
+        Node result = sut.findBeginning(root);
 
 
         assertEquals(root, result);
@@ -60,8 +61,8 @@ class Problem1Test {
         node3.setNext(node4);
 
 
-        Problem1 sut = new Problem1();
-        Node result = sut.findFirstInCircularLinkedList(root);
+        Problem1Book sut = new Problem1Book();
+        Node result = sut.findBeginning(root);
 
 
         assertNull(result);
@@ -69,8 +70,8 @@ class Problem1Test {
 
     @Test
     void null을_입력받으면_null을_리턴한다() {
-        Problem1 sut = new Problem1();
-        Node result = sut.findFirstInCircularLinkedList(null);
+        Problem1Book sut = new Problem1Book();
+        Node result = sut.findBeginning(null);
 
 
         assertNull(result);
