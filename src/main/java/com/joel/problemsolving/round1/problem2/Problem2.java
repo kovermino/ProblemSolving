@@ -1,8 +1,6 @@
 package com.joel.problemsolving.round1.problem2;
 
-import java.util.Map;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -22,7 +20,6 @@ public class Problem2 {
         this.numberOfAnimals = 0;
         this.dogs = new ConcurrentLinkedQueue<>();
         this.cats = new ConcurrentLinkedQueue<>();
-        Map<String, String> map = new ConcurrentHashMap<>();
     }
 
     public synchronized void enqueue(Animal animal) throws Exception {
