@@ -1,56 +1,16 @@
-package com.joel.problemsolving.round1.problem1;
+package com.joel.problemsolving.round2.problem4;
 
 import com.joel.problemsolving.common.Node;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
-class Problem1BookTest {
-    @Test
-    void 순환고리의_첫번째_노드를_리턴한다() {
-        Node root = new Node(null, 0);
-        Node node1 = new Node(null, 1);
-        Node node2 = new Node(null, 2);
-        Node node3 = new Node(null, 3);
-        Node node4 = new Node(null, 4);
-        root.setNext(node1);
-        node1.setNext(node2);
-        node2.setNext(node3);
-        node3.setNext(node4);
-        node4.setNext(node2);
+class Problem4BookTest {
 
-
-        Problem1Book sut = new Problem1Book();
-        Node result = sut.findBeginning(root);
-
-
-        assertEquals(node2, result);
-    }
+    Problem4Book sut = new Problem4Book();
 
     @Test
-    void 순환고리의_첫번째_노드가_root인_경우에는_root를_리턴한다() {
-        Node root = new Node(null, 0);
-        Node node1 = new Node(null, 1);
-        Node node2 = new Node(null, 2);
-        Node node3 = new Node(null, 3);
-        Node node4 = new Node(null, 4);
-        root.setNext(node1);
-        node1.setNext(node2);
-        node2.setNext(node3);
-        node3.setNext(node4);
-        node4.setNext(root);
-
-
-        Problem1Book sut = new Problem1Book();
-        Node result = sut.findBeginning(root);
-
-
-        assertEquals(root, result);
-    }
-
-    @Test
-    void 순환고리가_없는_경우에는_null을_리턴한다() {
+    void getKthNode_k번째_노드를_찾아야한다() {
         Node root = new Node(null, 0);
         Node node1 = new Node(null, 1);
         Node node2 = new Node(null, 2);
@@ -62,19 +22,43 @@ class Problem1BookTest {
         node3.setNext(node4);
 
 
-        Problem1Book sut = new Problem1Book();
-        Node result = sut.findBeginning(root);
-
-
-        assertNull(result);
+        assertEquals(node3, sut.getKthNode(root, 2));
     }
 
     @Test
-    void null을_입력받으면_null을_리턴한다() {
-        Problem1Book sut = new Problem1Book();
-        Node result = sut.findBeginning(null);
+    void getKthNode_리스트가_null이면_null을_리턴한다() {
+        assertEquals(null, sut.getKthNode(null, 2));
+    }
+
+    @Test
+    void getKthNode_리스트의_길이가_k보다_작으면_null을_리턴한다() {
+        Node root = new Node(null, 0);
+        Node node1 = new Node(null, 1);
+        Node node2 = new Node(null, 2);
+        Node node3 = new Node(null, 3);
+        Node node4 = new Node(null, 4);
+        root.setNext(node1);
+        node1.setNext(node2);
+        node2.setNext(node3);
+        node3.setNext(node4);
 
 
-        assertNull(result);
+        assertEquals(null, sut.getKthNode(root, 6));
+    }
+
+    @Test
+    void getKthNode_k가_0이면_null을_리턴한다() {
+        Node root = new Node(null, 0);
+        Node node1 = new Node(null, 1);
+        Node node2 = new Node(null, 2);
+        Node node3 = new Node(null, 3);
+        Node node4 = new Node(null, 4);
+        root.setNext(node1);
+        node1.setNext(node2);
+        node2.setNext(node3);
+        node3.setNext(node4);
+
+
+        assertEquals(null, sut.getKthNode(root, 0));
     }
 }

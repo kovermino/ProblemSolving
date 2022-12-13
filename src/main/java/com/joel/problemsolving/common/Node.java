@@ -1,4 +1,4 @@
-package com.joel.problemsolving.round1.problem1;
+package com.joel.problemsolving.common;
 
 import java.util.Objects;
 

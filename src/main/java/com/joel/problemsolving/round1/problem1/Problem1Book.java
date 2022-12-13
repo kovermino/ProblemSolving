@@ -1,5 +1,7 @@
 package com.joel.problemsolving.round1.problem1;
 
+import com.joel.problemsolving.common.Node;
+
 /**
  * (정의)
  * slow = 한 번에 1

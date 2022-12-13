@@ -1,5 +1,7 @@
 package com.joel.problemsolving.round1.problem1;
 
+import com.joel.problemsolving.common.Node;
+
 import java.util.HashSet;
 import java.util.Set;
 
