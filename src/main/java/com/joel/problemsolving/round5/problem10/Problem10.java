@@ -6,15 +6,15 @@ package com.joel.problemsolving.round5.problem10;
  */
 public class Problem10 {
     public int[][] getLargestBlackEdgeSubSquare(int[][] matrix) {
-        if(matrix.length != matrix[0].length) throw new RuntimeException("정방행렬이 아닙니다");
-        if(hasAllBlackSurrounding(0, 0, 6, matrix)) return matrix;
+        if (matrix.length != matrix[0].length) throw new RuntimeException("정방행렬이 아닙니다");
+        if (hasAllBlackSurrounding(0, 0, 6, matrix)) return matrix;
 
         int n = matrix.length;
-        while(n > 0) {
+        while (n > 0) {
             int range = matrix.length - n;
-            for(int i=0;i<=range;i++) {
-                for(int j=0;j<=range;j++) {
-                    if(hasAllBlackSurrounding(i, j, n, matrix)) {
+            for (int i = 0; i <= range; i++) {
+                for (int j = 0; j <= range; j++) {
+                    if (hasAllBlackSurrounding(i, j, n, matrix)) {
                         return extractSubSquare(i, j, n, matrix);
                     }
                 }
@@ -25,11 +25,11 @@ public class Problem10 {
     }
 
     private boolean hasAllBlackSurrounding(int row, int col, int n, int[][] matrix) {
-        for(int i=0;i<n;i++) {
-            if(matrix[row+i][col] != 1) return false;
-            if(matrix[row][col+i] != 1) return false;
-            if(matrix[row+n-1][col+i] != 1) return false;
-            if(matrix[row+i][col+n-1] != 1) return false;
+        for (int i = 0; i < n; i++) {
+            if (matrix[row + i][col] != 1) return false;
+            if (matrix[row][col + i] != 1) return false;
+            if (matrix[row + n - 1][col + i] != 1) return false;
+            if (matrix[row + i][col + n - 1] != 1) return false;
         }
         return true;
     }
@@ -38,13 +38,13 @@ public class Problem10 {
         int[][] subSquare = new int[n][n];
         int i = 0;
         int j = 0;
-        for(int x = row;x<row+n;x++) {
-            for(int y=col;y<col+n;y++) {
+        for (int x = row; x < row + n; x++) {
+            for (int y = col; y < col + n; y++) {
                 subSquare[i][j] = matrix[x][y];
                 j++;
             }
             i++;
-            j=0;
+            j = 0;
         }
         return subSquare;
     }

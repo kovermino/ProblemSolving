@@ -7,7 +7,7 @@ import java.util.*;
  * 예:
  * 입력: DAMP, LIKE
  * 출력: DAMP -> LAMP -> LIMP -> LIME -> LIKE
- *
+ * <p>
  * [알고리즘]
  * 1. start부터 시작
  * 2. 현재 단어에서 한 글자만 바뀐 단어들을 사전에서 전부 찾는다.
@@ -16,8 +16,8 @@ import java.util.*;
  */
 public class Problem9 {
     public List<String> getConversionPath(String start, String end, Set<String> dictionary) {
-        if(!dictionary.contains(start) || !dictionary.contains(end)) return null;
-        if(start.equals(end)) return Arrays.asList(start);
+        if (!dictionary.contains(start) || !dictionary.contains(end)) return null;
+        if (start.equals(end)) return Arrays.asList(start);
 
         Queue<String> targetQueue = new LinkedList<>();
         Set<String> visitedSet = new HashSet<>();
@@ -26,22 +26,22 @@ public class Problem9 {
         targetQueue.add(start);
         visitedSet.add(start);
 
-        while(!targetQueue.isEmpty()) {
+        while (!targetQueue.isEmpty()) {
             String target = targetQueue.poll();
             Set<String> oneCharDiffers = getOneCharDifferentWords(target, dictionary);
-            for(String oneCharDifferentWord: oneCharDiffers) {
-                if(oneCharDifferentWord.equals(end)) {
+            for (String oneCharDifferentWord : oneCharDiffers) {
+                if (oneCharDifferentWord.equals(end)) {
                     LinkedList<String> result = new LinkedList<>();
                     result.add(oneCharDifferentWord);
 
                     String previousWord = target;
-                    while(previousWord != null) {
+                    while (previousWord != null) {
                         result.add(0, previousWord);
                         previousWord = backTrackMap.get(previousWord);
                     }
                     return result;
                 } else {
-                    if(!visitedSet.contains(oneCharDifferentWord)) {
+                    if (!visitedSet.contains(oneCharDifferentWord)) {
                         targetQueue.add(oneCharDifferentWord);
                         visitedSet.add(oneCharDifferentWord);
                         backTrackMap.put(oneCharDifferentWord, target);
@@ -54,8 +54,8 @@ public class Problem9 {
 
     private Set<String> getOneCharDifferentWords(String word, Set<String> dictionary) {
         Set<String> result = new HashSet<>();
-        for(String dictionaryWord: dictionary) {
-            if(isOneCharDifferent(word, dictionaryWord)) {
+        for (String dictionaryWord : dictionary) {
+            if (isOneCharDifferent(word, dictionaryWord)) {
                 result.add(dictionaryWord);
             }
         }
@@ -63,13 +63,13 @@ public class Problem9 {
     }
 
     private boolean isOneCharDifferent(String target, String comparing) {
-        if(target == null && comparing == null) return true;
-        if(target == null || comparing == null) return false;
-        if(target.length() != comparing.length()) return false;
+        if (target == null && comparing == null) return true;
+        if (target == null || comparing == null) return false;
+        if (target.length() != comparing.length()) return false;
 
         int differentCharCount = 0;
-        for(int i = 0;i<target.length();i++) {
-            if(target.charAt(i) != comparing.charAt(i)) differentCharCount++;
+        for (int i = 0; i < target.length(); i++) {
+            if (target.charAt(i) != comparing.charAt(i)) differentCharCount++;
         }
         return differentCharCount == 1;
     }
