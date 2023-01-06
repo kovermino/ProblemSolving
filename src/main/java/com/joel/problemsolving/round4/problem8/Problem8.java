@@ -7,22 +7,22 @@ package com.joel.problemsolving.round4.problem8;
  */
 public class Problem8 {
     public int[][] getLargestSumMatrix(int N, int[][] matrix) {
-        if(matrix.length != N || matrix[0].length != N) throw new RuntimeException("크기 N의 정사각행렬이 아닙니다");
+        if (matrix.length != N || matrix[0].length != N) throw new RuntimeException("크기 N의 정사각행렬이 아닙니다");
         int[][] sumCache = getCachedValues(N, matrix);
         int maxArea = Integer.MIN_VALUE;
         int[][] result = null;
-        for(int i1=0;i1<N;i1++) {
-            for(int j1=0;j1<N;j1++) {
-                for(int i2=0;i2<N;i2++) {
-                    for(int j2=0;j2<N;j2++) {
-                       int currentArea = getSum(sumCache, i1, j1, i2, j2);
-                       if(maxArea < currentArea) {
-                           maxArea = currentArea;
-                           result = new int[][] {
-                                   {i1, j1},
-                                   {i2, j2}
-,                           };
-                       }
+        for (int i1 = 0; i1 < N; i1++) {
+            for (int j1 = 0; j1 < N; j1++) {
+                for (int i2 = 0; i2 < N; i2++) {
+                    for (int j2 = 0; j2 < N; j2++) {
+                        int currentArea = getSum(sumCache, i1, j1, i2, j2);
+                        if (maxArea < currentArea) {
+                            maxArea = currentArea;
+                            result = new int[][]{
+                                    {i1, j1},
+                                    {i2, j2}
+                                    ,};
+                        }
                     }
                 }
             }
@@ -32,16 +32,16 @@ public class Problem8 {
 
     public int[][] getCachedValues(int N, int[][] matrix) {
         int[][] cache = new int[N][N];
-        for(int i=0;i<N;i++) {
-            for(int j=0;j<N;j++) {
-                if(i == 0 && j == 0) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (i == 0 && j == 0) {
                     cache[i][j] = matrix[i][j];
-                } else if(i == 0) {
-                    cache[i][j] = cache[i][j-1] + matrix[i][j];
-                } else if(j == 0) {
-                    cache[i][j] = cache[i-1][j] + matrix[i][j];
+                } else if (i == 0) {
+                    cache[i][j] = cache[i][j - 1] + matrix[i][j];
+                } else if (j == 0) {
+                    cache[i][j] = cache[i - 1][j] + matrix[i][j];
                 } else {
-                    cache[i][j] = cache[i-1][j] + cache[i][j-1] - cache[i-1][j-1] + matrix[i][j];
+                    cache[i][j] = cache[i - 1][j] + cache[i][j - 1] - cache[i - 1][j - 1] + matrix[i][j];
                 }
             }
         }
@@ -49,9 +49,9 @@ public class Problem8 {
     }
 
     public int getSum(int[][] sums, int i1, int j1, int i2, int j2) {
-        if(i1 == 0 && j1 == 0) return sums[i2][j2];
-        if(i1 == 0) return sums[i2][j2] - sums[i2][j1-1];
-        if(j1 == 0) return sums[i2][j2] - sums[i1-1][j2];
-        return sums[i2][j2] - sums[i2][j1-1] - sums[i1-1][j2] + sums[i1-1][j1-1];
+        if (i1 == 0 && j1 == 0) return sums[i2][j2];
+        if (i1 == 0) return sums[i2][j2] - sums[i2][j1 - 1];
+        if (j1 == 0) return sums[i2][j2] - sums[i1 - 1][j2];
+        return sums[i2][j2] - sums[i2][j1 - 1] - sums[i1 - 1][j2] + sums[i1 - 1][j1 - 1];
     }
 }
